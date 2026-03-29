@@ -1,3 +1,16 @@
 # 2025-2026-Gateway-Robotics-Website
-This was our 2025 entry. See the [2026 version](link-to-2026-repo) for our latest submission. 
-Link --> https://tinyurl.com/fpvuyk43
+
+A website built for Best Robotics representing Gateway College Prep High School.
+
+## 🏆 Competition
+- Event: Best Robotics
+- Category: Web Design
+- Year: 2025
+- Built by: Gateway RObotics Team
+
+## 🛠️ Built With
+- HTML5
+- CSS3
+
+## 🚀 Live Site
+https://tinyurl.com/fpvuyk43
