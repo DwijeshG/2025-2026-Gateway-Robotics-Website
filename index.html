@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Gateway College Preparatory High School Robotics Website</title>
+    <link rel="icon" type="image/png" href="vera_logo.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Michroma&family=Oxanium:wght@200..800&display=swap" rel="stylesheet">
+</head>
+
+<body> 
+    <header class="header-nav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="verafied_logo.png" alt="Verafied logo." class="logo">
+                </a>    
+            </div>
+
+
+            <!--This code is for the navbar on the Home page.-->
+
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="our_product.html" class="nav-link">Our Product</a>
+                <a href="about_our_teams.html" class="nav-link">About Our Teams</a>
+                <a href="https://bestrobotics.org/" class="nav-link" target="_blank">BEST Robotics</a>
+                <a href="sponsors.html" class="nav-link">Sponsors</a>
+                <a href="support.html" class="nav-link">Support</a>
+                <a href="works_cited.html" class="nav-link">Works Cited</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="relative min-h-screen">
+            <div id="background" class="background-carousel" style="background-image: url(GCPS_bg.png);">
+                <div class="background-overlay"></div>
+            </div>
+
+            <!--This code is for the carousel on the home page.-->
+
+
+            <div class="carousel-content-wrapper">
+                <div class="carousel-container">
+                    <div class="carousel-grid">
+                        
+                        <div class="carousel-text-content">
+                            <div>
+                                <h1 id="title" class="main-title">ROBOTICS<br>CLUB</h1>
+                                <p id="description" class="description-text"></p>
+                            </div>
+                            <div class="carousel-controls">
+                                <button id="prevBtn" class="nav-btn" aria-label="Backward">
+                                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                                </button>
+                                <button id="pauseBtn" class="nav-btn" aria-label="Backward/Forward Toggle">
+                                    <svg id="pauseIcon" class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/></svg>
+                                    <svg id="playIcon" class="icon hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                                <button id="nextBtn" class="nav-btn" aria-label="Forward">
+                                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </button>
+                                <div id="dots" class="dots-container" role="button" tabindex="0" aria-label="Go to next slide."></div>
+                            </div>
+                        </div>
+
+                        <!--This code is for the card counter on the Home page.-->
+
+
+                        <div class="card-section">
+                            <div id="cardContainer" class="card-grid"></div>
+                            <div id="cardCounter" class="counter-badge">01</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+
+        //This is the carousel Card generator function
+        document.addEventListener('DOMContentLoaded', function() {
+            const roboticsPrograms = [
+
+                { id: 1, title: "OUR PRODUCTS", image: "./our_product_image.jpg", description: 'The products that we have made are the robot and the booth. Both were carefully crafted by our teams with precision.', href: 'our_product.html'},
+                { id: 2, title: "ABOUT OUR TEAMS", image: "./about_our_teams_image.jpg", description: 'Our Teams are very talented and skilled. Their communication, creativity, and skill allow them to make the best robot they can.', href: 'about_our_teams.html'},
+                { id: 3, title: "BEST ROBOTICS", image: "./BEST_Robotics_Logo.png", description: 'The Best Robotics competition was founded in 1993, and has currently lasted for 32 years. The competition is about encouraging students to use and improve their skills to make a robot.', href: "https://bestrobotics.org/"},
+                { id: 4, title: "SPONSORS", image: "./SponsorsImage.jpg", description: 'We gratefully acknowledge our sponsors for their generous contributions, which have helped empower our robotics team to innovate and excel in every challenge. Their vital support enables us to access new technologies, materials, and learning resources throughout the season.', href: 'sponsors.html'},
+                { id: 5, title: "SUPPORT", image: "./support_image.png", description: 'Please get in touch if you have any comments, queries, or worries regarding our team or robot activities!  From asking technical questions to reporting problems or offering suggestions, we value your feedback and will do everything in our power to help.', href: 'support.html', target: "_self" },
+                { id: 6, title: "WORK CITED", image: "./work_cited_image.png", description: 'All research, technical documentation, and software resources referenced in the development of our robotics projects are properly cited below. We strive to maintain academic integrity and recognize the authors whose work has informed our learning and design process.', href: 'work_cited.html'},
+            ];
+            
+            
+            let currentSlideIndex = 0;
+            let autoPlayEnabled = true;
+            let autoPlayTimer = null;
+
+            const backgroundElement = document.getElementById('background');
+            const titleElement = document.getElementById('title');
+            const descriptionElement = document.getElementById('description');
+            const cardContainerElement = document.getElementById('cardContainer');
+            const cardCounterElement = document.getElementById('cardCounter');
+            const dotsContainer = document.getElementById('dots');
+            const prevButton = document.getElementById('prevBtn');
+            const nextButton = document.getElementById('nextBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const playIcon = document.getElementById('playIcon');
+
+            function initializeCarousel() {
+                if (!backgroundElement || !titleElement || !cardContainerElement) {
+                    console.error('Essential carousel elements not found!');
+                    return;
+                }
+                backgroundElement.style.backgroundImage = "url('./GCPS_bg.png')";
+                setupEventListeners();
+                setupDotIndicators();
+                updateSlideContent(true);
+                startAutoPlay();
+            }
+
+            function setupEventListeners() {
+                nextButton.addEventListener('click', () => changeSlide(1));
+                prevButton.addEventListener('click', () => changeSlide(-1));
+                pauseBtn.addEventListener('click', togglePlayPause);
+            }
+
+            function changeSlide(direction) {
+                const newIndex = (currentSlideIndex + direction + roboticsPrograms.length) % roboticsPrograms.length;
+                navigateToSlide(newIndex);
+            }
+
+            function navigateToSlide(index) {
+                if (index === currentSlideIndex) return;
+                currentSlideIndex = index;
+                updateSlideContent();
+                restartAutoPlay();
+            }
+            
+            function startAutoPlay() {
+                if (!autoPlayEnabled) return;
+                stopAutoPlay();
+                autoPlayTimer = setInterval(() => changeSlide(1), 8000);
+                pauseIcon.classList.remove('hidden');
+                playIcon.classList.add('hidden');
+            }
+
+            function stopAutoPlay() {
+                clearInterval(autoPlayTimer);
+                autoPlayTimer = null;
+            }
+
+            function restartAutoPlay() {
+                stopAutoPlay();
+                if (autoPlayEnabled) {
+                    startAutoPlay();
+                }
+            }
+            
+            function togglePlayPause() {
+                autoPlayEnabled = !autoPlayEnabled;
+                if (autoPlayEnabled) {
+                    startAutoPlay();
+                } else {
+                    stopAutoPlay(); 
+                    pauseIcon.classList.add('hidden');
+                    playIcon.classList.remove('hidden');
+                }
+            }
+
+            function updateSlideContent(isInitial = false) {
+                const program = roboticsPrograms[currentSlideIndex];
+                titleElement.innerHTML = 'ROBOTICS<br>CLUB';
+                descriptionElement.innerHTML = program.description;
+                cardCounterElement.textContent = String(currentSlideIndex + 1).padStart(2, '0');
+                updateActiveIndicators();
+                generateCardCarousel();
+            }
+            
+            function generateCardCarousel() {
+                cardContainerElement.innerHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    const index = (currentSlideIndex + i) % roboticsPrograms.length;
+                    const program = roboticsPrograms[index];
+                    const card = document.createElement('div');
+                    let sizeClass = 'card-small';
+                    if (i === 0) sizeClass = 'card-large';
+                    else if (i === 1 || i === 2) sizeClass = 'card-medium';
+                    card.className = `card card-hover ${sizeClass}`;
+                    card.innerHTML = `
+                        <img src="${program.image}" alt="${program.title}" class="card-image">
+                        <div class="card-content">
+                            <h2 class="card-title">${program.title}</h2>
+                        </div>`;
+                    card.onclick = () => {
+                        if (program.id === 3) {
+                            window.open(program.href, '_blank');
+                        } else {
+                            window.location = program.href;
+                        }
+                    };
+                    cardContainerElement.appendChild(card);
+                }
+            }
+
+            function setupDotIndicators() {
+                dotsContainer.innerHTML = '';
+                roboticsPrograms.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'dot';
+                    dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+                    dot.addEventListener('click', () => navigateToSlide(index));
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            function updateActiveIndicators() {
+                dotsContainer.querySelectorAll('.dot').forEach((dot, index) => {
+                    if (index === currentSlideIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            initializeCarousel();
+
+        })
+
+    </script>
+</body>
+</html>

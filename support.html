@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Get Support from the Gateway Robotics Team</title>
+    <link rel="icon" type="image/png" href="vera_logo.png" alt="Vera logo made for robotics.">
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Michroma&family=Oxanium:wght@200..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header-nav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="verafied_logo.png" alt="Verafied logo." class="logo">
+                </a> 	
+            </div>
+            
+
+            <!--This code is for the navbar on the Support Page.-->
+            
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="our_product.html" class="nav-link">Our Product</a>
+                <a href="about_our_teams.html" class="nav-link">About Our Teams</a>
+                <a href="https://bestrobotics.org/" class="nav-link" target="_blank">BEST Robotics</a>
+                <a href="sponsors.html" class="nav-link">Sponsors</a>
+                <a href="support.html" class="nav-link active">Support</a>
+                <a href="works_cited.html" class="nav-link">Works Cited</a>
+            </nav>
+        </div>
+    </header>
+
+    <!--This code is for the main content of the page, which includes the support & contact form.-->
+    
+    <main class="main-content-wrapper">
+        <h1 class="page-title">Robotics Team Support & Contact</h1>
+        
+        <div id="contact-form-section" class="form-container">
+            <h2 class="section-heading">Directly Message the Robotics Team</h2>
+            
+            <form id="form">
+                <div class="field">
+                    <label for="name">Your Full Name</label>
+                    <input type="text" name="name" id="name" required placeholder="John Smith">
+                </div>
+                <div class="field">
+                    <label for="email">Your Email Address</label>
+                    <input type="email" name="email" id="email" required placeholder="john.smith@example.com">
+                </div>
+                <div class="field">
+                    <label for="title">Subject (Type updates if you want the latest updates from Gateway Robotics Team.)</label>
+                    <input type="text" name="title" id="title" required placeholder="Question about meetings">
+                </div>
+                <div class="field">
+                    <label for="message">Your Message Details</label>
+                    <textarea name="message" id="message" rows="6" required placeholder="Please provide as much detail as possible..."></textarea>
+                </div>
+
+                <input type="submit" id="button" value="Send Message">
+            </form>
+        </div>
+
+        </main>
+        
+        <script>
+            const btn = document.getElementById('button');
+
+            document.getElementById('form')
+            .addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            btn.value = 'Sending...';
+
+            const serviceID = 'default_service';
+            const templateID = 'template_npl52xl';
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                btn.value = 'Send Email';
+                alert('Sent!');
+                document.getElementById('form').reset();
+                }, (err) => {
+                btn.value = 'Send Email';
+                alert(JSON.stringify(err));
+                });
+            });
+
+            
+        </script>
+    </body>
+</html>
