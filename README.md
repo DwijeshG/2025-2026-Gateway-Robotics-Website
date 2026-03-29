@@ -14,3 +14,5 @@ A website built for Best Robotics representing Gateway College Prep High School.
 
 ## 🚀 Live Site
 https://tinyurl.com/fpvuyk43
+
+© 2025 Gateway Robotics Web Team. All rights reserved.
